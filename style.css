@@ -538,12 +538,25 @@ a {
   margin-top: 1.5rem;
 }
 
-.manifest__linies li {
+.manifest__linies p {
   font-family: var(--serif);
   font-size: clamp(1.1rem, 2.4vw, 1.4rem);
   color: var(--ivori);
   padding-left: 1.6rem;
   border-left: 2px solid var(--vermell);
+}
+
+/* CTA i signatura daurada del manifest (actualitzacio de contingut) */
+.manifest__text .btn {
+  margin-top: 1.8rem;
+}
+
+.manifest__firma {
+  margin-top: 1.4rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--or);
 }
 
 /* ---------- La Banda ---------- */
@@ -606,6 +619,35 @@ a {
 .targeta__bio {
   font-size: 0.95rem;
   color: var(--ivori-mut);
+}
+
+/* Subtitol daurat i cursiu sota el titular de La Banda */
+.banda__subtitol {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: var(--or);
+  margin-top: 0.8rem;
+}
+
+/* Linia DEFENSA: fet historic de cada integrant, en gris clar */
+.targeta__defensa {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(175, 124, 76, 0.14);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ivori-mut);
+}
+
+.targeta__defensa-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--vermell);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
 }
 
 /* Quarta targeta: espai reservat al públic, sense foto.
