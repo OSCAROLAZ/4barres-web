@@ -76,9 +76,16 @@
   var heroImg = document.getElementById("heroImg");
   var hero = document.getElementById("inici");
   var ficant = false;
+  // En mòbil el hero és apilat (foto sencera a dalt): el parallax
+  // només té sentit en pantalla àmplia
+  var esMobil = window.matchMedia("(max-width: 51.99rem)");
 
   function actualitzaParallax() {
     ficant = false;
+    if (esMobil.matches) {
+      heroImg.style.transform = "";
+      return;
+    }
     var desplacament = window.scrollY;
     var alcadaHero = hero.offsetHeight;
     // Trasllat pur (sense escalat): el marge extra del fons és sota

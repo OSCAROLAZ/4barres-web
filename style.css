@@ -380,6 +380,57 @@ a {
   50% { transform: translate(-50%, 10px); }
 }
 
+/* ---------- Hero en mòbil: el grup sencer sempre visible ----------
+   En pantalla vertical la foto panoràmica no pot fer cover sense
+   retallar els integrants dels costats. Solució editorial: la imatge
+   es mostra sencera a dalt (amplada completa, alçada natural) i el
+   contingut (títol, tagline, CTA) va a sota sobre el fons fosc. */
+@media (max-width: 51.99rem) {
+  .hero {
+    min-height: 0;
+    display: block;
+  }
+
+  .hero__fons {
+    position: relative;
+    inset: auto;
+    height: auto;
+    will-change: auto;
+  }
+
+  .hero__fons img {
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+    object-position: initial;
+    display: block;
+    transform: none !important;
+  }
+
+  /* Sense vel: el text ja no va damunt de la foto */
+  .hero__vel {
+    display: none;
+  }
+
+  .hero__contingut {
+    padding: 2.6rem 1.25rem 3.5rem;
+    margin: 0 auto;
+  }
+
+  .hero__fletxa {
+    position: static;
+    transform: none;
+    display: inline-block;
+    margin-top: 1rem;
+    animation: rebotMobil 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes rebotMobil {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
 /* ---------- Seccions genèriques ---------- */
 .seccio {
   padding: 5.5rem 1.25rem;
