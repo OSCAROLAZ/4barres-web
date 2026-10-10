@@ -453,6 +453,20 @@ a {
   50% { transform: translateY(8px); }
 }
 
+/* Hero mòbil (≤768px): contenidor gairebé quadrat per veure el grup
+   més gran; el recorteix queda definit per object-position */
+@media (max-width: 48rem) {
+  .hero__fons {
+    aspect-ratio: 1 / 1;
+  }
+
+  .hero__fons img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 40%;
+  }
+}
+
 /* ---------- Seccions genèriques ---------- */
 .seccio {
   padding: 5.5rem 1.25rem;
@@ -530,6 +544,35 @@ a {
   stroke: var(--or);
   stroke-width: 2;
   stroke-dasharray: 6 5;
+}
+
+/* Destell daurat que recorre el contorn de la barra del públic:
+   halo suau + nucli, animats amb dashoffset (cap filtre ni ombra).
+   pathLength=1: la volta sencera del contorn dura 4 s, lineal, en bucle */
+.quarta__barra--halo,
+.quarta__barra--llum {
+  fill: none;
+  stroke: #d4a24c;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.quarta__barra--halo {
+  stroke-width: 5;
+  opacity: 0.2;
+  stroke-dasharray: 0.1 0.9;
+  animation: quartabarra-llum 4s linear infinite;
+}
+
+.quarta__barra--llum {
+  stroke-width: 2.2;
+  opacity: 0.85;
+  stroke-dasharray: 0.08 0.92;
+  animation: quartabarra-llum 4s linear infinite;
+}
+
+@keyframes quartabarra-llum {
+  to { stroke-dashoffset: -1; }
 }
 
 .quarta__text p {
@@ -1178,5 +1221,13 @@ a {
   .revelar {
     opacity: 1;
     transform: none;
+  }
+
+  /* Destell de la quarta barra: fora de joc si l'usuari no vol moviment;
+     la vora daurada discontinua queda estàtica */
+  .quarta__barra--halo,
+  .quarta__barra--llum {
+    animation: none;
+    opacity: 0;
   }
 }
