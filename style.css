@@ -386,6 +386,17 @@ a {
    es mostra sencera a dalt (amplada completa, alçada natural) i el
    contingut (títol, tagline, CTA) va a sota sobre el fons fosc. */
 @media (max-width: 51.99rem) {
+  /* La capçalera deixa de tapar la foto: ocupa el seu lloc en el flux
+     i s'enganxa a dalt només en fer scroll (mateix comportament però
+     sense cobrir els caps del grup). Sense backdrop-filter: si no,
+     la capçalera es converteix en el bloc contenidor dels elements
+     fixed i el panell del menú quedaria atrapat dins seu (68px) */
+  .capcalera {
+    position: sticky;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .hero {
     min-height: 0;
     display: block;
@@ -1067,14 +1078,19 @@ a {
     top: 0;
     right: 0;
     bottom: 0;
+    /* Per sobre de la capçalera (z-index 50) i de tot el hero:
+       el panell mai queda sota la foto del grup */
+    z-index: 60;
     width: min(20rem, 85vw);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 2.2rem;
     padding: 2rem 2.4rem;
-    background-color: rgba(14, 11, 9, 0.97);
+    /* Fons totalment opac: les opcions mai es confonen amb el fons */
+    background-color: #0e0b09;
     border-left: 1px solid rgba(175, 124, 76, 0.15);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.55);
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.35, 1);
   }
