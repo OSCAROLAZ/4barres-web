@@ -1,0 +1,28 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "4barres.es" }],
+      "destination": "https://www.4barres.cat/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.4barres.es" }],
+      "destination": "https://www.4barres.cat/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "4barres.org" }],
+      "destination": "https://www.4barres.cat/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.4barres.org" }],
+      "destination": "https://www.4barres.cat/:path*",
+      "permanent": true
+    }
+  ]
+}
