@@ -1,0 +1,1062 @@
+/* ============================================================
+   4 BARRES — Web oficial del grup de rock català
+   Paleta extreta del book fotogràfic (fosc, èpic, editorial 35mm):
+   carbó #0A0807, umba #241A12, cuir #472E1C, ambre #AF7C4C,
+   or vell #D9A45B. Vermell de conversió de marca: #B3261E.
+   ============================================================ */
+
+:root {
+  --negre: #0a0807;
+  --carbo: #14100c;
+  --umba: #241a12;
+  --cuir: #472e1c;
+  --ambre: #af7c4c;
+  --or: #d9a45b;
+  --or-clar: #e9c896;
+  --ivori: #eae1d3;
+  --ivori-mut: #b3a795;
+  --vermell: #b3261e;
+  --vermell-fosc: #8c1d16;
+  --serif: "Marcellus", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --transicio: 0.35s cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  background-color: var(--negre);
+  color: var(--ivori);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--or);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  margin-bottom: 1.25rem;
+  max-width: 22ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Focus visible: anell daurat, accessible i dins la paleta */
+:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Grana global (overlay subtil de textura) ---------- */
+.grana {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Etiquetes de secció ---------- */
+.etiqueta {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ambre);
+  margin-bottom: 0.9rem;
+}
+
+.etiqueta::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--vermell);
+  vertical-align: middle;
+  margin-right: 0.7rem;
+}
+
+/* ---------- Botons: l'únic element sempre vermell ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.9rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color var(--transicio), transform var(--transicio), box-shadow var(--transicio);
+}
+
+.btn--vermell {
+  background-color: var(--vermell);
+  color: #fff5ec;
+}
+
+.btn--vermell:hover {
+  background-color: var(--vermell-fosc);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(179, 38, 30, 0.32);
+}
+
+.btn--petit {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.72rem;
+}
+
+.btn--fantasma {
+  background-color: transparent;
+  color: var(--ivori);
+  border-color: var(--cuir);
+}
+
+.btn--fantasma:hover {
+  border-color: var(--ambre);
+  color: var(--or-clar);
+  transform: translateY(-2px);
+}
+
+/* ---------- Capçalera adhesiva ---------- */
+.capcalera {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(10, 8, 7, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(175, 124, 76, 0.12);
+  transition: background-color var(--transicio);
+}
+
+.capcalera--fosca {
+  background: rgba(10, 8, 7, 0.92);
+}
+
+.nav {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--or);
+  letter-spacing: 0.08em;
+}
+
+.nav__llista {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav__llista a {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivori-mut);
+  transition: color var(--transicio);
+}
+
+.nav__llista a:hover {
+  color: var(--or-clar);
+}
+
+.nav__cta {
+  color: var(--or) !important;
+  border: 1px solid var(--cuir);
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+}
+
+.nav__cta:hover {
+  border-color: var(--vermell);
+}
+
+/* Hamburguesa (visible només en mòbil) */
+.nav__hamburguesa {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.nav__hamburguesa span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--or);
+  transition: transform var(--transicio), opacity var(--transicio);
+}
+
+.nav__hamburguesa[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__hamburguesa[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__hamburguesa[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero__fons {
+  position: absolute;
+  /* Anclat a dalt: el marge extra va sota, per al parallax,
+     així les cares del grup mai queden fora de l'encuadre */
+  inset: 0 0 -14% 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero__fons img {
+  /* Lleuger biaix cap a dalt per conservar aire sobre les cares */
+  object-position: center 12%;
+}
+
+.hero__vel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Vel fosc per garantir contrast AA del text damunt la foto */
+  background-color: rgba(10, 8, 7, 0.55);
+}
+
+.hero__contingut {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 1.25rem 4rem;
+  max-width: 46rem;
+}
+
+/* Quatre barres pintant-se amb traç SVG */
+.hero__barres {
+  width: min(180px, 40vw);
+  height: auto;
+  margin-bottom: 1.6rem;
+}
+
+.hero__barres .barra {
+  fill: rgba(179, 38, 30, 0);
+  stroke: var(--vermell);
+  stroke-width: 2.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pintar 0.9s cubic-bezier(0.6, 0, 0.3, 1) forwards,
+             omplir 0.6s ease forwards;
+}
+
+.hero__barres .barra:nth-child(1) { animation-delay: 0.2s, 0.9s; }
+.hero__barres .barra:nth-child(2) { animation-delay: 0.45s, 1.15s; }
+.hero__barres .barra:nth-child(3) { animation-delay: 0.7s, 1.4s; }
+.hero__barres .barra:nth-child(4) { animation-delay: 0.95s, 1.65s; }
+
+@keyframes pintar {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes omplir {
+  to { fill: rgba(179, 38, 30, 0.85); }
+}
+
+.hero__titol {
+  font-size: clamp(3.2rem, 12vw, 7rem);
+  letter-spacing: 0.06em;
+  color: var(--or);
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: apareixer 1s cubic-bezier(0.22, 0.8, 0.35, 1) 1.7s forwards;
+}
+
+.hero__subtitol {
+  display: block;
+  font-family: var(--sans);
+  font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--or-clar);
+  margin-top: 0.9rem;
+}
+
+.hero__tagline {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  color: var(--ivori);
+  margin: 1.4rem 0 2.2rem;
+  opacity: 0;
+  animation: apareixer 1s ease 2.2s forwards;
+}
+
+.hero .btn {
+  opacity: 0;
+  animation: apareixer 1s ease 2.5s forwards;
+}
+
+@keyframes apareixer {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero__fletxa {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: var(--ambre);
+  animation: rebot 2.4s ease-in-out infinite;
+}
+
+@keyframes rebot {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+}
+
+/* ---------- Seccions genèriques ---------- */
+.seccio {
+  padding: 5.5rem 1.25rem;
+}
+
+.seccio__cap {
+  max-width: 72rem;
+  margin: 0 auto 3rem;
+}
+
+/* Revelat en fer scroll (activat per JS amb IntersectionObserver) */
+.revelar {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.8, 0.35, 1), transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+
+.revelar.revelat {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Manifest (pantalla partida) ---------- */
+/* La secció "Què és 4 Barres" comparteix aquesta mateixa estètica:
+   pantalla partida, mateixa graella i mateixos ritmes */
+.manifest,
+.quarta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.manifest__media {
+  position: relative;
+  aspect-ratio: 1;
+  max-height: 34rem;
+  overflow: hidden;
+  border: 1px solid rgba(175, 124, 76, 0.18);
+}
+
+.manifest__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 60px rgba(10, 8, 7, 0.5);
+}
+
+/* Bloc visual de "Què és 4 Barres": les quatre barres en traç,
+   la quarta puntejada daurada per marcar que és del públic */
+.quarta__media {
+  position: relative;
+  aspect-ratio: 1;
+  max-height: 34rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(175, 124, 76, 0.18);
+  background-color: var(--carbo);
+}
+
+.quarta__media svg {
+  width: min(70%, 22rem);
+  height: auto;
+}
+
+.quarta__barra {
+  fill: rgba(179, 38, 30, 0.55);
+}
+
+.quarta__barra--public {
+  fill: transparent;
+  stroke: var(--or);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+
+.quarta__text p {
+  color: var(--ivori-mut);
+  margin-bottom: 1.2rem;
+  max-width: 58ch;
+}
+
+.quarta__text .btn {
+  margin-top: 0.8rem;
+}
+
+.manifest__linies {
+  list-style: none;
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 1.5rem;
+}
+
+.manifest__linies li {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  color: var(--ivori);
+  padding-left: 1.6rem;
+  border-left: 2px solid var(--vermell);
+}
+
+/* ---------- La Banda ---------- */
+.banda {
+  background-color: var(--carbo);
+  border-top: 1px solid rgba(175, 124, 76, 0.1);
+  border-bottom: 1px solid rgba(175, 124, 76, 0.1);
+}
+
+.banda__grid {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.targeta {
+  background-color: var(--umba);
+  border: 1px solid rgba(175, 124, 76, 0.14);
+  padding: 1.1rem 1.1rem 1.8rem;
+  transition: transform var(--transicio), box-shadow var(--transicio), border-color var(--transicio);
+}
+
+/* Elevació daurada en passar-hi el cursor */
+.targeta:hover {
+  transform: translateY(-10px);
+  border-color: var(--ambre);
+  box-shadow: 0 24px 50px rgba(217, 164, 91, 0.14), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.targeta__foto {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  margin-bottom: 1.4rem;
+}
+
+.targeta__foto img {
+  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+
+.targeta:hover .targeta__foto img {
+  transform: scale(1.045);
+}
+
+.targeta h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.targeta__instrument {
+  font-size: 0.74rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--vermell);
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+
+.targeta__bio {
+  font-size: 0.95rem;
+  color: var(--ivori-mut);
+}
+
+/* Quarta targeta: espai reservat al públic, sense foto.
+   Fons fosc i vora daurada discontinua, amb la quarta barra puntejada. */
+.targeta__placeholder {
+  aspect-ratio: 3 / 4;
+  margin-bottom: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  background-color: var(--negre);
+  border: 2px dashed rgba(217, 164, 91, 0.55);
+}
+
+.targeta__placeholder svg {
+  width: 55%;
+  height: auto;
+}
+
+.targeta__placeholder rect {
+  fill: rgba(179, 38, 30, 0.35);
+}
+
+.targeta__placeholder .targeta__placeholder-barra {
+  fill: transparent;
+  stroke: var(--or);
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+}
+
+.targeta__placeholder p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--ambre);
+}
+
+/* ---------- El Book: graella editorial desordenada ---------- */
+.book {
+  /* Fons lleugerament més càlid per separar-la visualment de La Banda */
+  background-color: #0e0b08;
+}
+
+.book__grid {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+}
+
+.book__foto {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(175, 124, 76, 0.16);
+}
+
+.book__foto img {
+  transition: transform 0.9s cubic-bezier(0.22, 0.8, 0.35, 1), filter 0.9s ease;
+}
+
+.book__foto:hover img {
+  transform: scale(1.04);
+}
+
+.book__foto figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem 1.1rem 0.9rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--or-clar);
+  /* Vel vertical per llegibilitat, sense gradient horitzontal */
+  background: rgba(10, 8, 7, 0);
+  background: linear-gradient(to top, rgba(10, 8, 7, 0.85), rgba(10, 8, 7, 0));
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transicio), transform var(--transicio);
+}
+
+.book__foto:hover figcaption,
+.book__foto:focus-within figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tractament càlid per integrar les fotos diürnes a la paleta del book */
+.book__foto--diurna img {
+  filter: sepia(0.22) saturate(0.9) brightness(0.88);
+}
+
+.book__foto--diurna:hover img {
+  filter: sepia(0.12) saturate(1) brightness(0.95);
+}
+
+/* Cèl·lula de text: la cita tanca la cronologia del book */
+.book__text {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.4rem;
+  border: 1px solid rgba(175, 124, 76, 0.16);
+}
+
+.book__text p {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  line-height: 1.35;
+  color: var(--or);
+  text-align: center;
+  max-width: 14ch;
+}
+
+.book__text p::before {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 2px;
+  background: var(--vermell);
+  margin: 0 auto 1rem;
+}
+
+/* ---------- Directe (fons amb overlay fosc) ---------- */
+.directe {
+  position: relative;
+  overflow: hidden;
+}
+
+.directe__fons {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.directe__vel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: rgba(10, 8, 7, 0.78);
+}
+
+.directe__contingut {
+  position: relative;
+  z-index: 2;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.concerts {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  background: rgba(175, 124, 76, 0.16);
+  border: 1px solid rgba(175, 124, 76, 0.16);
+}
+
+.concert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "data info" "data boto";
+  align-items: center;
+  gap: 0.4rem 1.4rem;
+  padding: 1.4rem 1.4rem;
+  background-color: rgba(10, 8, 7, 0.82);
+  transition: background-color var(--transicio);
+}
+
+.concert:hover {
+  background-color: rgba(36, 26, 18, 0.9);
+}
+
+.concert__data {
+  grid-area: data;
+  text-align: center;
+  padding-right: 1.4rem;
+  border-right: 1px solid rgba(175, 124, 76, 0.2);
+}
+
+.concert__dia {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--or);
+  line-height: 1;
+}
+
+.concert__mes {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--ambre);
+  margin-top: 0.3rem;
+}
+
+.concert__info {
+  grid-area: info;
+}
+
+.concert__info h3 {
+  font-size: 1.3rem;
+}
+
+.concert__info p {
+  font-size: 0.9rem;
+  color: var(--ivori-mut);
+}
+
+.concert .btn {
+  grid-area: boto;
+  justify-self: start;
+}
+
+/* ---------- Música ---------- */
+.musica__grid {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.musica__portada {
+  aspect-ratio: 1;
+  max-width: 30rem;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(175, 124, 76, 0.22);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.pistes {
+  list-style: none;
+  margin: 1.8rem 0 2.2rem;
+  border-top: 1px solid rgba(175, 124, 76, 0.18);
+}
+
+.pistes li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0.2rem;
+  border-bottom: 1px solid rgba(175, 124, 76, 0.18);
+  transition: background-color var(--transicio), padding-left var(--transicio);
+}
+
+.pistes li:hover {
+  background-color: rgba(71, 46, 28, 0.3);
+  padding-left: 0.7rem;
+}
+
+.pista__num {
+  font-size: 0.75rem;
+  color: var(--ambre);
+  font-weight: 600;
+}
+
+.pista__nom {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  flex: 1;
+}
+
+.pista__dur {
+  font-size: 0.8rem;
+  color: var(--ivori-mut);
+  font-variant-numeric: tabular-nums;
+}
+
+.musica__botons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* ---------- Uneix-te ---------- */
+.uneix {
+  background-color: var(--carbo);
+  border-top: 1px solid rgba(175, 124, 76, 0.1);
+  text-align: center;
+}
+
+.uneix__contingut {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.uneix__contingut h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uneix__text {
+  color: var(--ivori-mut);
+  margin-bottom: 2rem;
+}
+
+.uneix__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.uneix__form input {
+  flex: 1;
+  padding: 0.95rem 1.1rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ivori);
+  background-color: var(--negre);
+  border: 1px solid var(--cuir);
+  border-radius: 2px;
+  transition: border-color var(--transicio);
+}
+
+.uneix__form input::placeholder {
+  color: var(--ivori-mut);
+}
+
+.uneix__form input:focus {
+  outline: none;
+  border-color: var(--ambre);
+}
+
+.uneix__form input:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+}
+
+.uneix__ok {
+  margin-top: 1.2rem;
+  color: var(--or-clar);
+  font-weight: 500;
+}
+
+/* ---------- Peu ---------- */
+.peu {
+  padding: 3.5rem 1.25rem 2.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(175, 124, 76, 0.1);
+}
+
+.peu__rrss {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.peu__rrss a {
+  color: var(--ivori-mut);
+  transition: color var(--transicio), transform var(--transicio);
+  display: inline-block;
+}
+
+.peu__rrss a:hover {
+  color: var(--or);
+  transform: translateY(-3px);
+}
+
+.peu__copy {
+  font-size: 0.85rem;
+  color: var(--ivori-mut);
+}
+
+.peu__diari {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ambre);
+  margin-top: 0.4rem;
+  letter-spacing: 0.12em;
+}
+
+.peu__nota {
+  font-size: 0.72rem;
+  color: var(--ivori-mut);
+  margin-top: 0.9rem;
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   Mòbil primer: els breaks amplien, no redueixen
+   ============================================================ */
+
+@media (min-width: 40rem) {
+  .uneix__form {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 52rem) {
+  .manifest,
+  .quarta {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  /* Quatre targetes a la fila: tres músics i el públic */
+  .banda__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+  }
+
+  /* Graella editorial del Book: 4 columnes amb files implícites,
+     fotos desplaçades i alçades variades per trencar la monotonia */
+  .book__grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 11rem;
+    gap: 1.4rem;
+  }
+
+  .book__foto img {
+    height: 100%;
+  }
+
+  .book__foto--gran {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .book__foto--alta {
+    grid-row: span 2;
+  }
+
+  /* Empenyem una sola foto mig pany cap avall: la línia de muntanya es trenca
+     sense desordenar la resta de la graella. La especificitat doble és per no
+     perdre l'offset quan el scroll reveal aplica la seva transformació. */
+  .book__foto--desplacada,
+  .book__foto--desplacada.revelat {
+    transform: translateY(2.5rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .book__foto figcaption {
+    opacity: 1;
+    transform: none;
+  }
+
+  .musica__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 4rem;
+  }
+
+  .concert {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "data info boto";
+    padding: 1.6rem 2rem;
+  }
+}
+
+/* Menú hamburguesa en mòbil */
+@media (max-width: 51.99rem) {
+  .nav__hamburguesa {
+    display: flex;
+  }
+
+  .nav__llista {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(20rem, 85vw);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2.2rem;
+    padding: 2rem 2.4rem;
+    background-color: rgba(14, 11, 9, 0.97);
+    border-left: 1px solid rgba(175, 124, 76, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.35, 1);
+  }
+
+  .nav__llista--obert {
+    transform: translateX(0);
+  }
+
+  .nav__llista a {
+    font-size: 1rem;
+  }
+
+  .nav__cta {
+    margin-left: -1rem;
+  }
+}
+
+/* ---------- Moviment reduït: respectem l'usuari ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO principal -->
+  <title>4 Barres | Grup de rock català</title>
+  <meta name="description" content="4 Barres, el primer grup de rock català interactiu: Gaudí, Fabra i Guifré a la banda; la quarta barra ets tu. Catàleg obert, català i rock sense concessions.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.4barres.cat/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ca_ES">
+  <meta property="og:site_name" content="4 Barres">
+  <meta property="og:title" content="4 Barres | Grup de rock català">
+  <meta property="og:description" content="Tres èpoques. Un sol crit. Gaudí, Guifré el Pilós i Pompeu Fabra junts en un sol escenari.">
+  <meta property="og:url" content="https://www.4barres.cat/">
+  <meta property="og:image" content="https://www.4barres.cat/img/4BARRES_Foto4_grup_formal.png">
+  <meta property="og:image:alt" content="4 Barres, el grup de rock català, posant en una fàbrica modernista amb llum daurada">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="4 Barres | Grup de rock català">
+  <meta name="twitter:description" content="Tres èpoques. Un sol crit. Gaudí, Guifré el Pilós i Pompeu Fabra junts en un sol escenari.">
+  <meta name="twitter:image" content="https://www.4barres.cat/img/4BARRES_Foto4_grup_formal.png">
+
+  <!-- Dades estructurades: grup de música -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "4 Barres",
+    "description": "4 Barres, el primer grup de rock català interactiu: Gaudí, Fabra i Guifré a la banda; la quarta barra ets tu. Catàleg obert, català i rock sense concessions.",
+    "genre": "Rock català",
+    "url": "https://www.4barres.cat/",
+    "image": "https://www.4barres.cat/img/4BARRES_Foto4_grup_formal.png",
+    "foundingDate": "2026",
+    "member": [
+      { "@type": "Person", "name": "Antoni Gaudí", "roleName": "Guitarra" },
+      { "@type": "Person", "name": "Guifré el Pilós", "roleName": "Bateria" },
+      { "@type": "Person", "name": "Pompeu Fabra", "roleName": "Veu" }
+    ],
+    "album": {
+      "@type": "MusicAlbum",
+      "name": "4 Barres",
+      "image": "https://www.4barres.cat/img/4BARRES_portada_album.png"
+    }
+  }
+  </script>
+
+  <!-- Precàrrega de la imatge del hero (la resta van amb loading="lazy") -->
+  <!-- Precàrrega del hero en WebP amb fallback PNG (la resta van amb loading="lazy") -->
+  <link rel="preload" as="image" href="img/4BARRES_Foto4_grup_formal.webp" type="image/webp">
+  <link rel="preload" as="image" href="img/4BARRES_Foto4_grup_formal.png" type="image/png">
+
+  <!-- Tipografies: Marcellus (serif modernista) i Inter (sans geomètrica) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Grana global: overlay subtil de textura via CSS -->
+  <div class="grana" aria-hidden="true"></div>
+
+  <!-- Navegació adhesiva -->
+  <header class="capcalera">
+    <nav class="nav" aria-label="Navegació principal">
+      <a class="nav__logo" href="#inici" aria-label="4 Barres — tornar a l'inici">4B</a>
+      <button class="nav__hamburguesa" id="hamburguesa" aria-expanded="false" aria-controls="menu" aria-label="Obrir el menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__llista" id="menu">
+        <li><a href="#manifest">Manifest</a></li>
+        <li><a href="#la-quarta-barra">La quarta barra</a></li>
+        <li><a href="#la-banda">La Banda</a></li>
+        <li><a href="#el-book">El Book</a></li>
+        <li><a href="#directe">Directe</a></li>
+        <li><a href="#musica">Música</a></li>
+        <li><a class="nav__cta" href="#uneix-te">Uneix-te</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 1. HERO -->
+    <section class="hero" id="inici">
+      <div class="hero__fons">
+        <picture>
+          <source srcset="img/4BARRES_Foto4_grup_formal.webp" type="image/webp">
+          <img src="img/4BARRES_Foto4_grup_formal.png"
+               alt="4 Barres, el grup de rock català, posant en una fàbrica modernista il·luminada amb llum daurada de capvespre"
+               fetchpriority="high" id="heroImg" width="1536" height="1024">
+        </picture>
+      </div>
+      <div class="hero__vel" aria-hidden="true"></div>
+
+      <div class="hero__contingut">
+        <!-- Intro: quatre barres vermelles que es pinten amb traç SVG -->
+        <svg class="hero__barres" viewBox="0 0 200 90" role="img" aria-label="Les quatre barres vermelles de la Senyera">
+          <rect class="barra" x="10"  y="10" width="34" height="70" pathLength="1"/>
+          <rect class="barra" x="58"  y="10" width="34" height="70" pathLength="1"/>
+          <rect class="barra" x="106" y="10" width="34" height="70" pathLength="1"/>
+          <rect class="barra" x="154" y="10" width="34" height="70" pathLength="1"/>
+        </svg>
+
+        <h1 class="hero__titol">
+          4 BARRES
+          <span class="hero__subtitol">— Grup de rock català</span>
+        </h1>
+        <p class="hero__tagline">Tres èpoques. Un sol crit. La quarta barra, la teva.</p>
+        <a class="btn btn--vermell" href="#musica">Escolta'l primer</a>
+      </div>
+
+      <a class="hero__fletxa" href="#manifest" aria-label="Baixa al manifest">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 4v16m0 0l-6-6m6 6l6-6"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- 2. MANIFEST -->
+    <section class="manifest seccio" id="manifest">
+      <div class="manifest__media revelar">
+        <picture>
+          <source srcset="img/4BARRES_Foto11_macro_bombo.webp" type="image/webp">
+          <img src="img/4BARRES_Foto11_macro_bombo.png"
+               alt="Primer pla del bombo de 4 Barres, amb les quatre barres vermelles pintades a la pell del tambor"
+               loading="lazy" width="1024" height="1024">
+        </picture>
+      </div>
+      <div class="manifest__text revelar">
+        <p class="etiqueta">Manifest</p>
+        <h2>El manifest de 4 Barres: rock català sense concessions</h2>
+        <ul class="manifest__linies">
+          <li>Defensem el català no com una relíquia de museu, sinó com el que és: una eina viva per cridar, cantar i estimar-se.</li>
+          <li>Reivindiquem els oblidats de la cultura catalana: els antics que ningú recorda i els nous que encara no tenen escenari.</li>
+          <li>I la pau al món. No és un eslògan nou: Casals ho va recordar a l'ONU el 1971. Fa mil anys que ens unim per parlar de pau; ara també per cridar-la.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. QUÈ ÉS 4 BARRES: la quarta barra és el públic -->
+    <section class="quarta seccio" id="la-quarta-barra">
+      <div class="quarta__media revelar" aria-hidden="true">
+        <!-- Les quatre barres com a element visual, en el traç del hero -->
+        <svg viewBox="0 0 200 90" role="presentation" focusable="false">
+          <rect x="10"  y="10" width="34" height="70" class="quarta__barra"/>
+          <rect x="58"  y="10" width="34" height="70" class="quarta__barra"/>
+          <rect x="106" y="10" width="34" height="70" class="quarta__barra"/>
+          <rect x="154" y="10" width="34" height="70" class="quarta__barra quarta__barra--public"/>
+        </svg>
+      </div>
+      <div class="quarta__text revelar">
+        <p class="etiqueta">Què és 4 Barres</p>
+        <h2>Quatre barres, tres músics</h2>
+        <p>4 Barres és el primer grup de rock català interactiu i personalitzable. Tres llegendes de la història llepen guitarra, veu i bateria; però a l'escenari hi falta sempre algú: la quarta barra és el públic. Qualsevol orella hi pot cantar, qualsevol instrument s'hi pot afegir, i aviat, amb l'aplicació oficial, podràs intercanviar la veu de Pompeu Fabra per la teva, en qualsevol cançó del catàleg.</p>
+        <p>I si ets artista professional o grup, el catàleg sencer és teu: 4 Barres concedeix llicència perquè enregistris les nostres cançons al teu estil. No som competència: som catàleg obert, complement i un nou públic que ningú més no té.</p>
+        <a class="btn btn--vermell" href="#uneix-te">Postula't a la quarta barra</a>
+      </div>
+    </section>
+
+    <!-- 4. LA BANDA -->
+    <section class="banda seccio" id="la-banda">
+      <div class="seccio__cap revelar">
+        <p class="etiqueta">La Banda</p>
+        <h2>Els tres integrants del grup de rock 4 Barres</h2>
+      </div>
+      <div class="banda__grid">
+        <article class="targeta revelar">
+          <figure class="targeta__foto">
+            <picture>
+              <source srcset="img/4BARRES_Foto1_Gaudi_press.webp" type="image/webp">
+              <img src="img/4BARRES_Foto1_Gaudi_press.png"
+                   alt="Antoni Gaudí, guitarrista de 4 Barres, amb la seva guitarra de trencadís en una imatge promocional"
+                   loading="lazy" width="1024" height="1280">
+            </picture>
+          </figure>
+          <h3>Antoni Gaudí</h3>
+          <p class="targeta__instrument">Guitarra</p>
+          <p class="targeta__bio">Va fer etern tot allò inacabat. Els seus riffs no tenen plans ni data d'entrega: només fe.</p>
+        </article>
+        <article class="targeta revelar">
+          <figure class="targeta__foto">
+            <picture>
+              <source srcset="img/4BARRES_Foto2_Fabra_press.webp" type="image/webp">
+              <img src="img/4BARRES_Foto2_Fabra_press.png"
+                   alt="Pompeu Fabra, veu de 4 Barres, davant el micro en una imatge promocional del grup"
+                   loading="lazy" width="1024" height="1280">
+            </picture>
+          </figure>
+          <h3>Pompeu Fabra</h3>
+          <p class="targeta__instrument">Veu</p>
+          <p class="targeta__bio">Va donar a una llengua casa, gramàtica i futur; ara li posa veu i la torna a encendre. Cada paraula pesa com una llei i crema com un vers.</p>
+        </article>
+        <article class="targeta revelar">
+          <figure class="targeta__foto">
+            <picture>
+              <source srcset="img/4BARRES_Foto3_Guifre_press.webp" type="image/webp">
+              <img src="img/4BARRES_Foto3_Guifre_press.png"
+                   alt="Guifré el Pilós, bateria de 4 Barres, amb les baquetes a punt en una imatge promocional"
+                   loading="lazy" width="1024" height="1280">
+            </picture>
+          </figure>
+          <h3>Guifré el Pilós</h3>
+          <p class="targeta__instrument">Bateria</p>
+          <p class="targeta__bio">Va crear un emblema amb quatre dits i sang pròpia. El seu bombo segueix aquella mesura: quatre cops, quatre barres i un país que es posa dempeus.</p>
+        </article>
+        <!-- Quarta targeta: espai reservat al públic, sense foto -->
+        <article class="targeta targeta--public revelar">
+          <div class="targeta__placeholder" role="img" aria-label="Espai reservat per al públic: la quarta barra de 4 Barres">
+            <svg viewBox="0 0 200 90" aria-hidden="true" focusable="false">
+              <rect x="10"  y="10" width="34" height="70"/>
+              <rect x="58"  y="10" width="34" height="70"/>
+              <rect x="106" y="10" width="34" height="70"/>
+              <rect x="154" y="10" width="34" height="70" class="targeta__placeholder-barra"/>
+            </svg>
+            <p>El teu lloc aquí</p>
+          </div>
+          <h3>La quarta barra</h3>
+          <p class="targeta__instrument">El públic</p>
+          <p class="targeta__bio">Tres barres les pintem nosaltres. La quarta, tu. I aviat, fins i tot li podràs posar la teva veu.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. EL BOOK: diari visual del grup -->
+    <section class="book seccio" id="el-book">
+      <div class="seccio__cap revelar">
+        <p class="etiqueta">El Book</p>
+        <h2>El book fotogràfic de 4 Barres: el diari visual del grup</h2>
+      </div>
+      <!-- Graella editorial: la cronologia d'un dia de concert, de la cua al carrer -->
+      <div class="book__grid">
+        <figure class="book__foto book__foto--gran book__foto--diurna revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT13_cua_TeatreVictoria_v4.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT13_cua_TeatreVictoria_v4.png"
+                 alt="Cua de públic davant del Teatre Victòria de Barcelona, amb la marquesina del concert de 4 Barres il·luminada"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>Teatre Victòria, la cua abans de l'obra</figcaption>
+        </figure>
+        <figure class="book__foto book__foto--alta revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT12_postconcert_Barts.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT12_postconcert_Barts.png"
+                 alt="Els tres membres de 4 Barres, esgotats i somrients, fotografiant-se amb el públic del Barts després del concert"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>Barts, postconcert amb el públic</figcaption>
+        </figure>
+        <figure class="book__foto book__foto--alta revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT9_grup_terrazza_Gracia.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT9_grup_terrazza_Gracia.png"
+                 alt="Els tres integrants de 4 Barres brindant amb cervesa en una terrassa de Gràcia al capvespre"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>Gràcia, el brindis de la victòria</figcaption>
+        </figure>
+        <figure class="book__foto book__foto--diurna revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT8_grup_cafeteria.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT8_grup_cafeteria.png"
+                 alt="Els tres membres de 4 Barres repassant lletres i partitures al voltant d'una taula de marbre en una cafeteria"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>La cafeteria, l'oficina real del grup</figcaption>
+        </figure>
+        <figure class="book__foto book__foto--diurna book__foto--desplacada revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT7_grup_CiutatVella.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT7_grup_CiutatVella.png"
+                 alt="Els tres integrants de 4 Barres, abillats d'època, al carrer del barri Gòtic de Barcelona"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>Ciutat Vella, de camí al local</figcaption>
+        </figure>
+        <figure class="book__foto book__foto--diurna revelar">
+          <picture>
+            <source srcset="img/4BARRES_FotoT6_Fabra_diccionari.webp" type="image/webp">
+            <img src="img/4BARRES_FotoT6_Fabra_diccionari.png"
+                 alt="Pompeu Fabra de 4 Barres signant un diccionari per a una seguidora al carrer, vestit amb el seu Smoking"
+                 loading="lazy" width="1024" height="1280">
+          </picture>
+          <figcaption>Fabra, signant el diccionari al carrer</figcaption>
+        </figure>
+        <blockquote class="book__text revelar">
+          <p>«Tres èpoques. Un sol crit.»</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 6. DIRECTE -->
+    <section class="directe seccio" id="directe">
+      <div class="directe__fons" aria-hidden="true">
+        <picture>
+          <source srcset="img/4BARRES_Foto5_directe.webp" type="image/webp">
+          <img src="img/4BARRES_Foto5_directe.png"
+               alt=""
+               loading="lazy" id="directeImg" width="1536" height="1024">
+        </picture>
+      </div>
+      <div class="directe__vel" aria-hidden="true"></div>
+      <div class="directe__contingut">
+        <div class="seccio__cap revelar">
+          <p class="etiqueta">Directe</p>
+          <h2>4 Barres en concert: properes dates del grup de rock català</h2>
+        </div>
+        <ul class="concerts">
+          <li class="concert revelar">
+            <div class="concert__data">
+              <span class="concert__dia">14</span>
+              <span class="concert__mes">NOV 2026</span>
+            </div>
+            <div class="concert__info">
+              <h3>Barcelona</h3>
+              <p>Sala Apolo — La 2</p>
+            </div>
+            <a class="btn btn--vermell btn--petit" href="#">Entrades</a>
+          </li>
+          <li class="concert revelar">
+            <div class="concert__data">
+              <span class="concert__dia">05</span>
+              <span class="concert__mes">DES 2026</span>
+            </div>
+            <div class="concert__info">
+              <h3>Girona</h3>
+              <p>Auditori de Girona</p>
+            </div>
+            <a class="btn btn--vermell btn--petit" href="#">Entrades</a>
+          </li>
+          <li class="concert revelar">
+            <div class="concert__data">
+              <span class="concert__dia">23</span>
+              <span class="concert__mes">GEN 2027</span>
+            </div>
+            <div class="concert__info">
+              <h3>Lleida</h3>
+              <p>Teatre de l'Escorxador</p>
+            </div>
+            <a class="btn btn--vermell btn--petit" href="#">Entrades</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. MÚSICA -->
+    <section class="musica seccio" id="musica">
+      <div class="musica__grid">
+        <figure class="musica__portada revelar">
+          <picture>
+            <source srcset="img/4BARRES_portada_album.webp" type="image/webp">
+            <img src="img/4BARRES_portada_album.png"
+                 alt="Portada del disc de 4 Barres, el grup de rock català, amb les quatre barres vermelles al fons"
+                 loading="lazy" width="1254" height="1254">
+          </picture>
+        </figure>
+        <div class="musica__contingut revelar">
+          <p class="etiqueta">Música</p>
+          <h2>El primer disc de 4 Barres ja sona en català</h2>
+          <ol class="pistes">
+            <li><span class="pista__num">01</span><span class="pista__nom">Tres èpoques</span><span class="pista__dur">3:42</span></li>
+            <li><span class="pista__num">02</span><span class="pista__nom">El crit de la Senyera</span><span class="pista__dur">4:07</span></li>
+            <li><span class="pista__num">03</span><span class="pista__nom">Trencadís elèctric</span><span class="pista__dur">3:18</span></li>
+            <li><span class="pista__num">04</span><span class="pista__nom">Pell de bombo</span><span class="pista__dur">5:01</span></li>
+          </ol>
+          <div class="musica__botons">
+            <a class="btn btn--vermell" href="#">Spotify</a>
+            <a class="btn btn--fantasma" href="#">Apple Music</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. UNEIX-TE -->
+    <section class="uneix seccio" id="uneix-te">
+      <div class="uneix__contingut revelar">
+        <p class="etiqueta">Newsletter</p>
+        <h2>Uneix-te a la rebel·lió</h2>
+        <p class="uneix__text">Deixa el teu email i rebràs avisos de la convocatòria a músics, el llançament de l'app de veu i cada novetat del Diari.</p>
+        <!-- Acció placeholder: connecta aquí el teu proveïdor de correu -->
+        <form class="uneix__form" id="formNewsletter" action="#" method="post" novalidate>
+          <label class="sr-only" for="email">Correu electrònic</label>
+          <input type="email" id="email" name="email" placeholder="el.teu@correu.cat" required autocomplete="email">
+          <button class="btn btn--vermell" type="submit">M'hi apunto</button>
+        </form>
+        <p class="uneix__ok" id="formOk" role="status" hidden>Gràcies! Has entrat a la rebel·lió. T'escrivim aviat.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PEU -->
+  <footer class="peu">
+    <ul class="peu__rrss" aria-label="Xarxes socials de 4 Barres">
+      <li><a href="#" aria-label="Instagram de 4 Barres">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="YouTube de 4 Barres">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="TikTok de 4 Barres">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 6.5c.8 2.3 2.6 3.7 5 3.9"/></svg>
+      </a></li>
+      <li><a href="#" aria-label="X de 4 Barres">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+      </a></li>
+    </ul>
+    <p class="peu__copy">© 2026 4 Barres</p>
+    <p class="peu__diari">El Diari, aviat</p>
+    <p class="peu__nota">MusicGroup de Barcelona. Catàleg obert a tothom: només cal que la versió mantingui el foc en la llengua.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
