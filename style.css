@@ -361,6 +361,17 @@ a {
   animation: apareixer 1s ease 2.5s forwards;
 }
 
+/* Eslògan petit i daurat sota el tagline (mateix ritme d'entrada que el CTA) */
+.hero__eslogan {
+  margin: -1.2rem 0 2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--or);
+  opacity: 0;
+  animation: apareixer 1s ease 2.4s forwards;
+}
+
 @keyframes apareixer {
   to { opacity: 1; transform: translateY(0); }
 }
