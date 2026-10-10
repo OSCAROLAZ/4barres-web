@@ -361,17 +361,6 @@ a {
   animation: apareixer 1s ease 2.5s forwards;
 }
 
-/* Eslògan petit i daurat sota el tagline (mateix ritme d'entrada que el CTA) */
-.hero__eslogan {
-  margin: -1.2rem 0 2rem;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--or);
-  opacity: 0;
-  animation: apareixer 1s ease 2.4s forwards;
-}
-
 @keyframes apareixer {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -629,6 +618,11 @@ a {
 }
 
 .targeta {
+  /* Columna flex per ancorar el bloc DEFENSA a la base de la targeta:
+     així totes les línies de DEFENSA queden anivellades en horitzontal */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: var(--umba);
   border: 1px solid rgba(175, 124, 76, 0.14);
   padding: 1.1rem 1.1rem 1.8rem;
@@ -673,6 +667,9 @@ a {
 .targeta__bio {
   font-size: 0.95rem;
   color: var(--ivori-mut);
+  /* Espai mínim abans del bloc DEFENSA: en escriptori la separació
+     real la marca el margin-top: auto d'aquest bloc */
+  margin-bottom: 1rem;
 }
 
 /* Subtitol daurat i cursiu sota el titular de La Banda */
@@ -686,7 +683,7 @@ a {
 
 /* Linia DEFENSA: fet historic de cada integrant, en gris clar */
 .targeta__defensa {
-  margin-top: 1rem;
+  margin-top: auto;
   padding-top: 0.9rem;
   border-top: 1px solid rgba(175, 124, 76, 0.14);
   font-size: 0.8rem;
@@ -759,10 +756,16 @@ a {
   position: relative;
   margin: 0;
   overflow: hidden;
+  /* Format més alt per a les fotos verticals del book: amb 4/5
+     (com els originals) els caps dels integrants mai es guillotinen */
+  aspect-ratio: 4 / 5;
   border: 1px solid rgba(175, 124, 76, 0.16);
 }
 
 .book__foto img {
+  /* El 15% superior del marc sempre queda dins del recorteix:
+     les cares i els caps sencers són intocables */
+  object-position: center 15%;
   transition: transform 0.9s cubic-bezier(0.22, 0.8, 0.35, 1), filter 0.9s ease;
 }
 
@@ -1120,7 +1123,9 @@ a {
      fotos desplaçades i alçades variades per trencar la monotonia */
   .book__grid {
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 11rem;
+    /* Files altes: cada cel·la individual és com a mínim quadrada (1/1),
+       així les fotos verticals del book no queden guillotinades */
+    grid-auto-rows: 17rem;
     gap: 1.4rem;
   }
 
