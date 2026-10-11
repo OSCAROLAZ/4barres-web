@@ -1119,43 +1119,6 @@ a {
     gap: 1.6rem;
   }
 
-  /* Graella editorial del Book: 4 columnes amb files implícites,
-     fotos desplaçades i alçades variades per trencar la monotonia */
-  .book__grid {
-    grid-template-columns: repeat(4, 1fr);
-    /* Files altes: cada cel·la individual és com a mínim quadrada (1/1),
-       així les fotos verticals del book no queden guillotinades */
-    grid-auto-rows: 17rem;
-    gap: 1.4rem;
-  }
-
-  .book__foto img {
-    height: 100%;
-  }
-
-  .book__foto--gran {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .book__foto--alta {
-    grid-row: span 2;
-  }
-
-  /* Empenyem una sola foto mig pany cap avall: la línia de muntanya es trenca
-     sense desordenar la resta de la graella. La especificitat doble és per no
-     perdre l'offset quan el scroll reveal aplica la seva transformació. */
-  .book__foto--desplacada,
-  .book__foto--desplacada.revelat {
-    transform: translateY(2.5rem);
-    margin-bottom: 2.5rem;
-  }
-
-  .book__foto figcaption {
-    opacity: 1;
-    transform: none;
-  }
-
   .musica__grid {
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
     gap: 4rem;
@@ -1165,6 +1128,67 @@ a {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "data info boto";
     padding: 1.6rem 2rem;
+  }
+}
+
+/* ---------- Book en escriptori: graella regular de 3 columnes ----------
+   EXCLUSIU d'escriptori: la versió mòbil (≤768px) queda intacta.
+   Primera fila: foto gran (Teatre Victòria) de 2 columnes + Barts.
+   Segona fila: 3 fotos verticals. Tercera: diccionari + cita (2 columnes).
+   Cap transform, marge negatiu ni desplaçament: zero superposicions. */
+@media (min-width: 769px) {
+  .book__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .book__foto {
+    position: relative;
+    overflow: hidden;
+    /* Format vertical uniforme per a totes les fotos regulars */
+    aspect-ratio: 4 / 5;
+    width: 100%;
+  }
+
+  .book__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  /* Foto gran destacada: ocupa 2 columnes, format panoràmic */
+  .book__foto--gran {
+    grid-column: span 2;
+    aspect-ratio: 16 / 10;
+  }
+
+  /* La targeta del costat de la gran s'estira a l'altura de la fila
+     (sense ratio fix): així la primera fila queda realment anivellada
+     i no queda cap forat sota seu */
+  .book__foto--gran + .book__foto {
+    aspect-ratio: auto;
+  }
+
+  /* La cita ocupa 2 columnes: omple la tercera fila sense forats negres,
+     amb el text centrat com una casella regular del grid */
+  .book__text {
+    grid-column: span 2;
+  }
+
+  /* Peus de foto: degradat inferior suau, sempre visibles a escriptori */
+  .book__foto figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+    padding: 1.25rem 0.75rem 0.5rem;
+    font-size: 0.9rem;
+    opacity: 1;
+    transform: none;
   }
 }
 
