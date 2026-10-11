@@ -738,6 +738,41 @@ a {
   color: var(--ambre);
 }
 
+/* Varietat amb foto real (el públic del directe): la imatge omple el marc,
+   el motiu de les barres i el text queden damunt amb un vel fosc de baix */
+.targeta__placeholder--foto {
+  position: relative;
+  justify-content: flex-end;
+  padding-bottom: 1.4rem;
+}
+
+.targeta__placeholder--foto picture {
+  position: absolute;
+  inset: 0;
+}
+
+.targeta__placeholder--foto picture img {
+  height: 100%;
+  object-position: center 20%;
+}
+
+.targeta__placeholder--foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 8, 7, 0.9) 0%, rgba(10, 8, 7, 0.2) 45%, transparent 70%);
+}
+
+.targeta__placeholder--foto svg,
+.targeta__placeholder--foto p {
+  position: relative;
+  z-index: 1;
+}
+
+.targeta__placeholder--foto svg {
+  width: 45%;
+}
+
 /* ---------- El Book: graella editorial desordenada ---------- */
 .book {
   /* Fons lleugerament més càlid per separar-la visualment de La Banda */
@@ -1172,10 +1207,10 @@ a {
     aspect-ratio: auto;
   }
 
-  /* La cita ocupa 2 columnes: omple la tercera fila sense forats negres,
-     amb el text centrat com una casella regular del grid */
+  /* La cita ocupa una casella regular: amb la foto de la Rambla la tercera
+     fila queda plena (Rambla, diccionari, cita) sense forats negres */
   .book__text {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   /* Peus de foto: degradat inferior suau, sempre visibles a escriptori */
