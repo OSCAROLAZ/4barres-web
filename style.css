@@ -874,6 +874,7 @@ a {
   background-color: var(--carbo);
   border-top: 1px solid rgba(175, 124, 76, 0.1);
   border-bottom: 1px solid rgba(175, 124, 76, 0.1);
+  overflow: hidden; /* la fila a ample complet no ha de generar scroll horitzontal a la pàgina */
 }
 
 /* Bloc destacat: pòster vertical + presentació (pantalla partida) */
@@ -922,19 +923,81 @@ a {
   letter-spacing: 0.04em;
 }
 
-/* Graella de capítols: targetes amb elevació daurada, com La Banda */
-.serie__capitols {
+/* Fila de capítols estil Netflix: carrusel horitzontal a ample complet
+   amb miniatures grans, perquè cada thumbnail es pugui inspeccionar en
+   detall (en si mateix és un resum visual de l'episodi) */
+.serie__fila-cap {
   max-width: 72rem;
-  margin: 0 auto;
+  margin: 0 auto 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.serie__fila-titol {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivori);
+}
+
+/* Les fletxes només tenen sentit amb ratolí; a mòbil es llisca amb el dit */
+.serie__fletxes {
+  display: none;
+  gap: 0.5rem;
+}
+
+.serie__fletxa {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.6rem;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(175, 124, 76, 0.35);
+  color: var(--or);
+  cursor: pointer;
+  transition: background-color var(--transicio), border-color var(--transicio), opacity var(--transicio);
+}
+
+.serie__fletxa:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-color: var(--ambre);
+}
+
+.serie__fletxa[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.serie__capitols {
+  display: flex;
+  gap: 1.4rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none; /* la barra va amagada: es navega amb gest, roda o fletxes */
+  -ms-overflow-style: none;
+  /* Fila a ample complet de la finestra (com a Netflix), amb la primera
+     targeta alineada amb el contingut de la secció */
+  margin-inline: calc(50% - 50vw);
+  padding-inline: max(1.25rem, calc((100vw - 72rem) / 2));
+  scroll-padding-inline: max(1.25rem, calc((100vw - 72rem) / 2));
+}
+
+.serie__capitols::-webkit-scrollbar {
+  display: none;
 }
 
 .capitol {
+  flex: 0 0 auto;
+  width: min(80vw, 21rem);
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-color: var(--umba);
   border: 1px solid rgba(175, 124, 76, 0.14);
   padding: 0.9rem 0.9rem 1.4rem;
@@ -1042,10 +1105,14 @@ a {
     margin-right: 0;
   }
 
-  /* Vuit capítols: graella de 4 columnes i dues files */
-  .serie__capitols {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.6rem;
+  /* Miniatures molt més grans que l'antiga graella: unes 4 targetes
+     per pantalla, amb la darrera tallada per indicar que es pot lliscar */
+  .serie__fletxes {
+    display: flex;
+  }
+
+  .capitol {
+    width: clamp(20rem, 26vw, 26rem);
   }
 }
 

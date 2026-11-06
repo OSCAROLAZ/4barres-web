@@ -349,7 +349,19 @@
         </div>
       </div>
 
-      <div class="serie__capitols">
+      <div class="serie__fila revelar">
+        <div class="serie__fila-cap">
+          <h3 class="serie__fila-titol">Capítols</h3>
+          <div class="serie__fletxes">
+            <button class="serie__fletxa" id="fletxaEnrere" type="button" aria-label="Anar als capítols anteriors">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="serie__fletxa" id="fletxaEndavant" type="button" aria-label="Anar als capítols següents">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="serie__capitols" id="capitols" tabindex="0" role="region" aria-label="Capítols de la sèrie «4 Barres»">
         <article class="capitol revelar">
           <figure class="capitol__foto">
             <picture>
@@ -447,6 +459,7 @@
           <h3><span class="capitol__num">Episodi 8</span>L'enemic etern</h3>
           <a class="btn btn--vermell btn--petit" href="#">Mira'l a Netflix</a>
         </article>
+        </div>
       </div>
     </section>
 
