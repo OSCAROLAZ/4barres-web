@@ -869,6 +869,186 @@ a {
   margin: 0 auto 1rem;
 }
 
+/* ---------- La Sèrie: la sitcom del grup, disponible a Netflix ---------- */
+.serie {
+  background-color: var(--carbo);
+  border-top: 1px solid rgba(175, 124, 76, 0.1);
+  border-bottom: 1px solid rgba(175, 124, 76, 0.1);
+}
+
+/* Bloc destacat: pòster vertical + presentació (pantalla partida) */
+.serie__destacat {
+  max-width: 72rem;
+  margin: 0 auto 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.serie__portada {
+  margin: 0;
+  width: 100%;
+  max-width: 26rem;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(175, 124, 76, 0.22);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.serie__portada img {
+  object-position: center 20%;
+}
+
+.serie__text p {
+  color: var(--ivori-mut);
+  max-width: 56ch;
+}
+
+.serie__disponible {
+  margin: 1.6rem 0 1.4rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* El wordmark de Netflix va en el seu vermell de marca (#E50914),
+   única excepció al vermell desaturat: és reconeixement de marca, no un CTA */
+.serie__netflix {
+  color: #e50914;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Graella de capítols: targetes amb elevació daurada, com La Banda */
+.serie__capitols {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+}
+
+.capitol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--umba);
+  border: 1px solid rgba(175, 124, 76, 0.14);
+  padding: 0.9rem 0.9rem 1.4rem;
+  transition: transform var(--transicio), box-shadow var(--transicio), border-color var(--transicio);
+}
+
+.capitol:hover {
+  transform: translateY(-8px);
+  border-color: var(--ambre);
+  box-shadow: 0 22px 46px rgba(217, 164, 91, 0.14), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.capitol__foto {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  margin-bottom: 1.1rem;
+}
+
+.capitol__foto img {
+  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+
+.capitol:hover .capitol__foto img {
+  transform: scale(1.045);
+}
+
+.capitol h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.9rem;
+}
+
+.capitol__num {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--vermell);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.capitol .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Capítol pendent: marc daurat discontinu i la quarta barra puntejada,
+   sense hover d'elevació (no hi ha res a vendre encara) */
+.capitol--pendent:hover {
+  transform: none;
+  border-color: rgba(175, 124, 76, 0.14);
+  box-shadow: none;
+}
+
+.capitol__foto--pendent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--negre);
+  border: 2px dashed rgba(217, 164, 91, 0.55);
+}
+
+.capitol__foto--pendent svg {
+  width: 42%;
+  height: auto;
+}
+
+.capitol__foto--pendent rect {
+  fill: rgba(179, 38, 30, 0.35);
+}
+
+.capitol__foto--pendent .capitol__barra-pendent {
+  fill: transparent;
+  stroke: var(--or);
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+}
+
+.capitol__foto--pendent p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--ambre);
+}
+
+.capitol__nota {
+  margin-top: auto;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ivori-mut);
+}
+
+@media (min-width: 52rem) {
+  .serie__destacat {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4rem;
+  }
+
+  .serie__portada {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Vuit capítols: graella de 4 columnes i dues files */
+  .serie__capitols {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+  }
+}
+
 /* ---------- Directe (fons amb overlay fosc) ---------- */
 .directe {
   position: relative;
