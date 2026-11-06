@@ -6,6 +6,7 @@
    4. Capçalera més fosca en fer scroll
    5. Formulari de newsletter (acció placeholder)
    6. Carrusel de capítols de La Sèrie (fletxes estil Netflix)
+   7. Visor de miniatures (lightbox gairebé a pantalla completa)
    ============================================================ */
 
 (function () {
@@ -178,5 +179,73 @@
     carrusel.addEventListener("scroll", actualitzaFletxes, { passive: true });
     window.addEventListener("resize", actualitzaFletxes);
     actualitzaFletxes();
+  }
+
+  /* ---------- 7. Visor de miniatures (lightbox gairebé a pantalla completa) ---------- */
+  var ampliables = Array.prototype.slice.call(document.querySelectorAll(".capitol__amplia"));
+  var llum = document.getElementById("llum");
+  var llumImg = document.getElementById("llumImg");
+  var llumTitol = document.getElementById("llumTitol");
+  var llumTanca = document.getElementById("llumTanca");
+  var llumPrev = document.getElementById("llumPrev");
+  var llumNext = document.getElementById("llumNext");
+  var indexLlum = 0;
+  var darrerFocus = null;
+
+  function mostraLlum(i) {
+    var enllac = ampliables[i];
+    var imatge = enllac.querySelector("img");
+    // Carreguem el WebP (més lleuger) dins el visor; el PNG queda per al no-JS
+    llumImg.src = enllac.getAttribute("href").replace(/\.png$/, ".webp");
+    llumImg.alt = imatge ? imatge.alt : "";
+    llumTitol.textContent = enllac.getAttribute("data-titol");
+    indexLlum = i;
+  }
+
+  function obreLlum(i) {
+    darrerFocus = document.activeElement;
+    mostraLlum(i);
+    llum.hidden = false;
+    document.body.classList.add("llum-obert");
+    llumTanca.focus();
+  }
+
+  function tancaLlum() {
+    llum.hidden = true;
+    document.body.classList.remove("llum-obert");
+    if (darrerFocus && darrerFocus.focus) {
+      darrerFocus.focus();
+    }
+  }
+
+  function mouLlum(desplacament) {
+    mostraLlum((indexLlum + desplacament + ampliables.length) % ampliables.length);
+  }
+
+  if (llum && ampliables.length > 0) {
+    ampliables.forEach(function (enllac, i) {
+      enllac.addEventListener("click", function (event) {
+        event.preventDefault();
+        obreLlum(i);
+      });
+    });
+
+    llumTanca.addEventListener("click", tancaLlum);
+    llum.querySelector("[data-tanca]").addEventListener("click", tancaLlum);
+    llumPrev.addEventListener("click", function () { mouLlum(-1); });
+    llumNext.addEventListener("click", function () { mouLlum(1); });
+
+    document.addEventListener("keydown", function (event) {
+      if (llum.hidden) {
+        return;
+      }
+      if (event.key === "Escape") {
+        tancaLlum();
+      } else if (event.key === "ArrowLeft") {
+        mouLlum(-1);
+      } else if (event.key === "ArrowRight") {
+        mouLlum(1);
+      }
+    });
   }
 })();

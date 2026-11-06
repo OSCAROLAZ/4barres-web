@@ -994,7 +994,7 @@ a {
 
 .capitol {
   flex: 0 0 auto;
-  width: min(80vw, 21rem);
+  width: min(86vw, 21rem);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -1094,6 +1094,158 @@ a {
   color: var(--ivori-mut);
 }
 
+/* Badge «Disponible a Netflix» amb la N de la marca, a la capçalera de la fila */
+.serie__badge-netflix {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ivori-mut);
+  white-space: nowrap;
+}
+
+.serie__netflix-n {
+  display: block;
+  transform: translateY(1px);
+}
+
+/* La miniatura sencera és clicable: obre el visor gairebé a pantalla completa.
+   Sense JS, l'enllaç obre la imatge PNG directament (millora progressiva) */
+.capitol__amplia {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: zoom-in;
+}
+
+/* Pista visual de zoom (lupa daurada) que apareix en passar-hi per sobre */
+.capitol__amplia::after {
+  content: "";
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10.5' cy='10.5' r='6' fill='none' stroke='%23D9A45B' stroke-width='2'/%3E%3Cpath d='M15 15l5.5 5.5' stroke='%23D9A45B' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M8 10.5h5M10.5 8v5' stroke='%23D9A45B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.3rem;
+  border: 1px solid rgba(217, 164, 91, 0.5);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--transicio), transform var(--transicio);
+}
+
+.capitol__amplia:hover::after,
+.capitol__amplia:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- Visor de miniatures (lightbox) ---------- */
+.llum {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 3.5rem 1rem 2rem;
+}
+
+.llum[hidden] {
+  display: none;
+}
+
+.llum__fons {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(5, 5, 6, 0.93);
+  cursor: zoom-out;
+}
+
+.llum__quadre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 100%;
+}
+
+.llum__quadre img {
+  max-width: 94vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(175, 124, 76, 0.3);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+}
+
+.llum__peu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  padding-top: 1.1rem;
+}
+
+.llum__ep {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--or);
+}
+
+.llum__tanca,
+.llum__nav {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(175, 124, 76, 0.35);
+  color: var(--or);
+  cursor: pointer;
+  transition: background-color var(--transicio), border-color var(--transicio);
+}
+
+.llum__tanca:hover,
+.llum__nav:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-color: var(--ambre);
+}
+
+.llum__tanca {
+  top: 1.2rem;
+  right: 1.2rem;
+}
+
+.llum__nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.llum__nav--prev {
+  left: 1.2rem;
+}
+
+.llum__nav--next {
+  right: 1.2rem;
+}
+
+/* Bloquegem el scroll de la pàgina mentre el visor és obert */
+.llum-obert {
+  overflow: hidden;
+}
+
 @media (min-width: 52rem) {
   .serie__destacat {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -1105,14 +1257,14 @@ a {
     margin-right: 0;
   }
 
-  /* Miniatures molt més grans que l'antiga graella: unes 4 targetes
-     per pantalla, amb la darrera tallada per indicar que es pot lliscar */
+  /* Miniatures encara més grans: unes 2,5 targetes per pantalla,
+     amb la darrera tallada per indicar que es pot lliscar */
   .serie__fletxes {
     display: flex;
   }
 
   .capitol {
-    width: clamp(20rem, 26vw, 26rem);
+    width: clamp(22rem, 31vw, 30rem);
   }
 }
 
