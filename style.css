@@ -940,9 +940,10 @@ a {
   gap: 2.5rem;
 }
 
+/* Les miniatures es mostren senceres amb la seva proporció natural
+   (els thumbnails incorporen logo, número d'episodi i bafarades: cap retall) */
 .serie-p__foto {
   display: block;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
   margin-bottom: 0.9rem;
   border: 1px solid rgba(175, 124, 76, 0.14);
@@ -954,11 +955,7 @@ a {
 }
 
 .serie-p__foto img {
-  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
-}
-
-.serie-p__foto:hover img {
-  transform: scale(1.03);
+  height: auto;
 }
 
 .serie-p__cap-titol {
@@ -991,6 +988,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  aspect-ratio: 16 / 9;
   background-color: var(--negre);
   border: 2px dashed rgba(217, 164, 91, 0.55);
   cursor: default;
