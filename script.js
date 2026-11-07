@@ -5,8 +5,7 @@
    3. Parallax lleu al hero (amb respecte a prefers-reduced-motion)
    4. Capçalera més fosca en fer scroll
    5. Formulari de newsletter (acció placeholder)
-   6. Carrusel de capítols de La Sèrie (fletxes estil Netflix)
-   7. Visor de miniatures (lightbox gairebé a pantalla completa)
+   6. Visor de miniatures (lightbox gairebé a pantalla completa)
    ============================================================ */
 
 (function () {
@@ -84,6 +83,10 @@
 
   function actualitzaParallax() {
     ficant = false;
+    // A les subpàgines no hi ha hero: res a fer
+    if (!heroImg || !hero) {
+      return;
+    }
     if (esMobil.matches) {
       heroImg.style.transform = "";
       return;
@@ -98,7 +101,7 @@
     }
   }
 
-  if (!redueixMoviment) {
+  if (!redueixMoviment && heroImg && hero) {
     window.addEventListener(
       "scroll",
       function () {
@@ -133,52 +136,20 @@
   var form = document.getElementById("formNewsletter");
   var missatgeOk = document.getElementById("formOk");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    var email = document.getElementById("email");
-    if (!email.value || !email.checkValidity()) {
-      email.focus();
-      email.setAttribute("aria-invalid", "true");
-      return;
-    }
-    email.removeAttribute("aria-invalid");
-    form.hidden = true;
-    missatgeOk.hidden = false;
-  });
-
-  /* ---------- 6. Carrusel de capítols de La Sèrie (fletxes estil Netflix) ---------- */
-  var carrusel = document.getElementById("capitols");
-  var fletxaEnrere = document.getElementById("fletxaEnrere");
-  var fletxaEndavant = document.getElementById("fletxaEndavant");
-
-  if (carrusel && fletxaEnrere && fletxaEndavant) {
-    // Una "pantalla" de targetes per clic, com a Netflix
-    function pasCarrusel() {
-      var targeta = carrusel.querySelector(".capitol");
-      var ampladaTargeta = targeta
-        ? targeta.getBoundingClientRect().width + 22 /* gap aprox. */
-        : carrusel.clientWidth;
-      var quantesCaben = Math.max(1, Math.floor(carrusel.clientWidth / ampladaTargeta));
-      return quantesCaben * ampladaTargeta;
-    }
-
-    function actualitzaFletxes() {
-      var alFinal = carrusel.scrollLeft >= carrusel.scrollWidth - carrusel.clientWidth - 1;
-      fletxaEnrere.disabled = carrusel.scrollLeft <= 0;
-      fletxaEndavant.disabled = alFinal;
-    }
-
-    fletxaEnrere.addEventListener("click", function () {
-      carrusel.scrollBy({ left: -pasCarrusel(), behavior: redueixMoviment ? "auto" : "smooth" });
+  // A les subpàgines no hi ha formulari de newsletter
+  if (form && missatgeOk) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var email = document.getElementById("email");
+      if (!email.value || !email.checkValidity()) {
+        email.focus();
+        email.setAttribute("aria-invalid", "true");
+        return;
+      }
+      email.removeAttribute("aria-invalid");
+      form.hidden = true;
+      missatgeOk.hidden = false;
     });
-
-    fletxaEndavant.addEventListener("click", function () {
-      carrusel.scrollBy({ left: pasCarrusel(), behavior: redueixMoviment ? "auto" : "smooth" });
-    });
-
-    carrusel.addEventListener("scroll", actualitzaFletxes, { passive: true });
-    window.addEventListener("resize", actualitzaFletxes);
-    actualitzaFletxes();
   }
 
   /* ---------- 7. Visor de miniatures (lightbox gairebé a pantalla completa) ---------- */

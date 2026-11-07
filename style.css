@@ -869,43 +869,154 @@ a {
   margin: 0 auto 1rem;
 }
 
-/* ---------- La Sèrie: la sitcom del grup, disponible a Netflix ---------- */
-.serie {
-  background-color: var(--carbo);
-  border-top: 1px solid rgba(175, 124, 76, 0.1);
-  border-bottom: 1px solid rgba(175, 124, 76, 0.1);
-  overflow: hidden; /* la fila a ample complet no ha de generar scroll horitzontal a la pàgina */
+/* ---------- Subpàgina LA SÈRIE (la-serie.html) ---------- */
+/* Espai per sota de la capçalera fixa a les subpàgines (a l'índex el hero és a pantalla completa) */
+.subpagina main {
+  padding-top: 4.5rem;
 }
 
-/* Bloc destacat: pòster vertical + presentació (pantalla partida) */
-.serie__destacat {
-  max-width: 72rem;
-  margin: 0 auto 3.5rem;
+/* Enllaç actiu al menú de navegació */
+.nav a[aria-current="page"] {
+  color: var(--or);
+}
+
+/* Disseny de dues columnes a pantalla ampla: presentació a l'esquerra,
+   llista de capítols a la dreta (apil·lat a mòbil) */
+.serie-p {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 6rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
-  align-items: center;
+  gap: 3.5rem;
 }
 
-.serie__portada {
-  margin: 0;
+.serie-p__portada {
+  margin: 0 auto 2.5rem;
   width: 100%;
-  max-width: 26rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 24rem;
   aspect-ratio: 2 / 3;
   overflow: hidden;
   border: 1px solid rgba(175, 124, 76, 0.22);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
 }
 
-.serie__portada img {
+.serie-p__portada img {
   object-position: center 20%;
 }
 
-.serie__text p {
+.serie-p__text p {
   color: var(--ivori-mut);
   max-width: 56ch;
+}
+
+.serie-p__torna {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.serie-p__torna a {
+  color: var(--ivori-mut);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transicio);
+}
+
+.serie-p__torna a:hover {
+  color: var(--or);
+}
+
+/* Llista vertical de capítols, com el llistat d'episodis de Netflix */
+.serie-p__capitols {
+  min-width: 0;
+}
+
+.serie-p__llista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.serie-p__foto {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  border: 1px solid rgba(175, 124, 76, 0.14);
+  transition: border-color var(--transicio);
+}
+
+.serie-p__foto:hover {
+  border-color: rgba(217, 164, 91, 0.45);
+}
+
+.serie-p__foto img {
+  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+
+.serie-p__foto:hover img {
+  transform: scale(1.03);
+}
+
+.serie-p__cap-titol {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--ivori);
+  margin-bottom: 0.35rem;
+}
+
+.serie-p__cap-num {
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-right: 0.35rem;
+}
+
+.serie-p__cap-desc {
+  font-size: 0.92rem;
+  color: var(--ivori-mut);
+  max-width: 62ch;
+}
+
+/* Capítol pendent: marc daurat discontinu i la quarta barra puntejada */
+.serie-p__foto--pendent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--negre);
+  border: 2px dashed rgba(217, 164, 91, 0.55);
+  cursor: default;
+}
+
+.serie-p__foto--pendent svg {
+  width: 32%;
+  height: auto;
+}
+
+.serie-p__foto--pendent rect {
+  fill: rgba(179, 38, 30, 0.35);
+}
+
+.serie-p__foto--pendent .serie-p__barra-pendent {
+  fill: transparent;
+  stroke: var(--or);
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+}
+
+.serie-p__foto--pendent p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--ambre);
 }
 
 .serie__disponible {
@@ -944,157 +1055,7 @@ a {
   color: var(--ivori);
 }
 
-/* Les fletxes només tenen sentit amb ratolí; a mòbil es llisca amb el dit */
-.serie__fletxes {
-  display: none;
-  gap: 0.5rem;
-}
-
-.serie__fletxa {
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background-color: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(175, 124, 76, 0.35);
-  color: var(--or);
-  cursor: pointer;
-  transition: background-color var(--transicio), border-color var(--transicio), opacity var(--transicio);
-}
-
-.serie__fletxa:hover {
-  background-color: rgba(0, 0, 0, 0.85);
-  border-color: var(--ambre);
-}
-
-.serie__fletxa[disabled] {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.serie__capitols {
-  display: flex;
-  gap: 1.4rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none; /* la barra va amagada: es navega amb gest, roda o fletxes */
-  -ms-overflow-style: none;
-  /* Fila a ample complet de la finestra (com a Netflix), amb la primera
-     targeta alineada amb el contingut de la secció */
-  margin-inline: calc(50% - 50vw);
-  padding-inline: max(1.25rem, calc((100vw - 72rem) / 2));
-  scroll-padding-inline: max(1.25rem, calc((100vw - 72rem) / 2));
-}
-
-.serie__capitols::-webkit-scrollbar {
-  display: none;
-}
-
-.capitol {
-  flex: 0 0 auto;
-  width: min(86vw, 21rem);
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--umba);
-  border: 1px solid rgba(175, 124, 76, 0.14);
-  padding: 0.9rem 0.9rem 1.4rem;
-  transition: transform var(--transicio), box-shadow var(--transicio), border-color var(--transicio);
-}
-
-.capitol:hover {
-  transform: translateY(-8px);
-  border-color: var(--ambre);
-  box-shadow: 0 22px 46px rgba(217, 164, 91, 0.14), 0 6px 18px rgba(0, 0, 0, 0.45);
-}
-
-.capitol__foto {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  margin-bottom: 1.1rem;
-}
-
-.capitol__foto img {
-  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
-}
-
-.capitol:hover .capitol__foto img {
-  transform: scale(1.045);
-}
-
-.capitol h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.9rem;
-}
-
-.capitol__num {
-  display: block;
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--vermell);
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-}
-
-.capitol .btn {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-/* Capítol pendent: marc daurat discontinu i la quarta barra puntejada,
-   sense hover d'elevació (no hi ha res a vendre encara) */
-.capitol--pendent:hover {
-  transform: none;
-  border-color: rgba(175, 124, 76, 0.14);
-  box-shadow: none;
-}
-
-.capitol__foto--pendent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background-color: var(--negre);
-  border: 2px dashed rgba(217, 164, 91, 0.55);
-}
-
-.capitol__foto--pendent svg {
-  width: 42%;
-  height: auto;
-}
-
-.capitol__foto--pendent rect {
-  fill: rgba(179, 38, 30, 0.35);
-}
-
-.capitol__foto--pendent .capitol__barra-pendent {
-  fill: transparent;
-  stroke: var(--or);
-  stroke-width: 3;
-  stroke-dasharray: 7 6;
-}
-
-.capitol__foto--pendent p {
-  font-family: var(--serif);
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-  color: var(--ambre);
-}
-
-.capitol__nota {
-  margin-top: auto;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ivori-mut);
-}
-
-/* Badge «Disponible a Netflix» amb la N de la marca, a la capçalera de la fila */
+/* Badge «Disponible a Netflix» amb la N de la marca, a la capçalera de la llista */
 .serie__badge-netflix {
   display: flex;
   align-items: center;
@@ -1247,24 +1208,16 @@ a {
 }
 
 @media (min-width: 52rem) {
-  .serie__destacat {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  /* Subpàgina La Sèrie: presentació a l'esquerra, capítols a la dreta */
+  .serie-p {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
     gap: 4rem;
+    align-items: start;
   }
 
-  .serie__portada {
+  .serie-p__portada {
     margin-left: 0;
     margin-right: 0;
-  }
-
-  /* Miniatures encara més grans: unes 2,5 targetes per pantalla,
-     amb la darrera tallada per indicar que es pot lliscar */
-  .serie__fletxes {
-    display: flex;
-  }
-
-  .capitol {
-    width: clamp(22rem, 31vw, 30rem);
   }
 }
 
