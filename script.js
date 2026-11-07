@@ -49,12 +49,23 @@
 
   /* ---------- 2. Revelat en fer scroll ---------- */
   var elementsRevelar = document.querySelectorAll(".revelar");
+  var algunRevelat = false;
+
+  function revelaTot() {
+    elementsRevelar.forEach(function (el) {
+      el.classList.add("revelat");
+    });
+    if (observador) {
+      observador.disconnect();
+    }
+  }
 
   if ("IntersectionObserver" in window && !redueixMoviment) {
     var observador = new IntersectionObserver(
       function (entrades) {
         entrades.forEach(function (entrada) {
           if (entrada.isIntersecting) {
+            algunRevelat = true;
             entrada.target.classList.add("revelat");
             observador.unobserve(entrada.target);
           }
@@ -66,11 +77,18 @@
     elementsRevelar.forEach(function (el) {
       observador.observe(el);
     });
+
+    // Trencacircuits: si l'observer no ha revelat res en 2 segons
+    // (alguns navegadors mòbils no lliuren el callback inicial), ho
+    // revelem tot perquè la pàgina mai no pugui quedar en blanc
+    setTimeout(function () {
+      if (!algunRevelat) {
+        revelaTot();
+      }
+    }, 2000);
   } else {
     // Fallback: tot visible de cop
-    elementsRevelar.forEach(function (el) {
-      el.classList.add("revelat");
-    });
+    revelaTot();
   }
 
   /* ---------- 3. Parallax lleu al hero ---------- */

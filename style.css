@@ -466,14 +466,18 @@ a {
   margin: 0 auto 3rem;
 }
 
-/* Revelat en fer scroll (activat per JS amb IntersectionObserver) */
-.revelar {
+/* Revelat en fer scroll (activat per JS amb IntersectionObserver).
+   IMPORTANT: l'ocultació inicial només s'aplica amb la classe .js al root
+   (la posa el head); si el JS falla o no arriba a executar-se, el
+   contingut es mostra sempre. Un trencacircuits de 2 s al script ho
+   revela tot si l'observer no ha funcionat (alguns navegadors mòbils). */
+.js .revelar {
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.8s cubic-bezier(0.22, 0.8, 0.35, 1), transform 0.8s cubic-bezier(0.22, 0.8, 0.35, 1);
 }
 
-.revelar.revelat {
+.js .revelar.revelat {
   opacity: 1;
   transform: translateY(0);
 }
