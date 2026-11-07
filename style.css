@@ -1007,7 +1007,9 @@ a {
 
 /* ---------- El repartiment: sessió promocional (retrats + foto de grup) ---------- */
 .serie-p__repartiment {
-  margin-top: 3.5rem;
+  /* A mòbil és l'últim element del grid (després dels capítols);
+     l'espai el marca el gap del contenidor */
+  margin-top: 0;
 }
 
 .repartiment__llista {
@@ -1263,6 +1265,18 @@ a {
   .serie-p__portada {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  /* Els capítols ocupen tota la columna dreta (dues files), així el
+     repartiment pot quedar just sota la presentació, a l'esquerra */
+  .serie-p__capitols {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .serie-p__repartiment {
+    grid-column: 1;
+    grid-row: 2;
   }
 }
 
