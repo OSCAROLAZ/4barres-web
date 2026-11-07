@@ -1001,6 +1001,54 @@ a {
   color: var(--ambre);
 }
 
+/* ---------- El repartiment: sessió promocional (retrats + foto de grup) ---------- */
+.serie-p__repartiment {
+  margin-top: 3.5rem;
+}
+
+.repartiment__llista {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.repartiment__actor figure {
+  margin: 0;
+}
+
+/* Les fotos es mostren senceres amb la seva proporció natural */
+.repartiment__actor img {
+  height: auto;
+  border: 1px solid rgba(175, 124, 76, 0.18);
+}
+
+.repartiment__actor figcaption {
+  margin-top: 0.8rem;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: var(--or);
+}
+
+.repartiment__actor--grup figcaption {
+  text-align: center;
+}
+
+/* Entrada esglaonada: primer el retrat 1, després el 2, el 3 i la foto de grup */
+.repartiment__llista .revelar:nth-child(2) {
+  transition-delay: 0.12s;
+}
+
+.repartiment__llista .revelar:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.repartiment__llista .revelar:nth-child(4) {
+  transition-delay: 0.36s;
+}
+
 .serie__disponible {
   margin: 1.6rem 0 1.4rem;
   font-size: 0.85rem;
