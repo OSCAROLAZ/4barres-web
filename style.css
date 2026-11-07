@@ -958,24 +958,8 @@ a {
   height: auto;
 }
 
-.serie-p__cap-titol {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 1.05rem;
-  color: var(--ivori);
-  margin-bottom: 0.35rem;
-}
-
-.serie-p__cap-num {
-  font-weight: 800;
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-right: 0.35rem;
-}
-
 .serie-p__cap-desc {
+  margin-top: 0.9rem;
   font-size: 0.92rem;
   color: var(--ivori-mut);
   max-width: 62ch;
@@ -1037,11 +1021,12 @@ a {
    detall (en si mateix és un resum visual de l'episodi) */
 .serie__fila-cap {
   max-width: 72rem;
-  margin: 0 auto 1.4rem;
+  margin: 0 auto 1.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
 }
 
 .serie__fila-titol {
@@ -1053,22 +1038,32 @@ a {
   color: var(--ivori);
 }
 
-/* Badge «Disponible a Netflix» amb la N de la marca, a la capçalera de la llista */
+/* Badge «Disponible a Netflix» amb la N de la marca, en format promocional */
 .serie__badge-netflix {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin-left: auto;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
+  padding: 0.55rem 1.1rem;
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(229, 9, 20, 0.45);
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ivori-mut);
+  color: #f2ede4;
   white-space: nowrap;
+}
+
+.serie__badge-netflix .serie__netflix {
+  font-size: 1.15em;
+  letter-spacing: 0.06em;
 }
 
 .serie__netflix-n {
   display: block;
-  transform: translateY(1px);
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* La miniatura sencera és clicable: obre el visor gairebé a pantalla completa.
