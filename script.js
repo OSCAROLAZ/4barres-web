@@ -1,5 +1,6 @@
 /* ============================================================
    4 BARRES — Interaccions en JS vanilla (sense llibreries)
+   0. Porta d'accés amb contrasenya (sessió del navegador)
    1. Menú hamburguesa en mòbil
    2. Revelat en fer scroll (IntersectionObserver)
    3. Parallax lleu al hero (amb respecte a prefers-reduced-motion)
@@ -12,6 +13,58 @@
   "use strict";
 
   var redueixMoviment = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 0. Porta d'accés amb contrasenya ----------
+     Pantalla de contrasenya a totes les pàgines. Quan s'encerta,
+     es recorda durant la sessió del navegador (sessionStorage).
+     Nota: és una barrera visual (la web és estàtica); els fitxers
+     segueixen sent accessibles si se'n coneix l'adreça directa. */
+  (function portaAcces() {
+    var CLAU = "cifo123";
+    var CLAU_EMMAGATZEMATGE = "4b_acces";
+
+    if (sessionStorage.getItem(CLAU_EMMAGATZEMATGE) === "ok") {
+      return;
+    }
+
+    var porta = document.createElement("div");
+    porta.className = "porta";
+    porta.setAttribute("role", "dialog");
+    porta.setAttribute("aria-modal", "true");
+    porta.setAttribute("aria-label", "Accés restringit a la web de 4 Barres");
+    porta.innerHTML =
+      '<div class="porta__targeta">' +
+      '<p class="porta__marca">4 Barres</p>' +
+      '<h2 class="porta__titol">Accés restringit</h2>' +
+      '<p class="porta__text">Aquesta web encara no és pública. Introdueix la contrasenya per entrar.</p>' +
+      '<form class="porta__formulari" novalidate>' +
+      '<label class="sr-only" for="portaContrasenya">Contrasenya</label>' +
+      '<input class="porta__camp" id="portaContrasenya" type="password" name="contrasenya" placeholder="Contrasenya" autocomplete="current-password" required>' +
+      '<button class="btn btn--vermell porta__boto" type="submit">Entra</button>' +
+      '</form>' +
+      '<p class="porta__error" role="alert" hidden>Contrasenya incorrecta. Torna-ho a provar.</p>' +
+      '</div>';
+    document.body.appendChild(porta);
+    document.body.style.overflow = "hidden";
+
+    var formulari = porta.querySelector(".porta__formulari");
+    var camp = porta.querySelector(".porta__camp");
+    var error = porta.querySelector(".porta__error");
+
+    formulari.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (camp.value === CLAU) {
+        sessionStorage.setItem(CLAU_EMMAGATZEMATGE, "ok");
+        porta.remove();
+        document.body.style.overflow = "";
+      } else {
+        error.hidden = false;
+        camp.select();
+      }
+    });
+
+    camp.focus();
+  })();
 
   /* ---------- 1. Menú hamburguesa ---------- */
   var hamburguesa = document.getElementById("hamburguesa");

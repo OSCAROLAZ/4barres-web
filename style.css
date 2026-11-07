@@ -1670,3 +1670,89 @@ a {
     opacity: 0;
   }
 }
+
+
+/* ---------- Porta d'accés amb contrasenya (totes les pàgines) ---------- */
+.porta {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background-color: var(--negre);
+}
+
+.porta__targeta {
+  width: 100%;
+  max-width: 20rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background-color: #12100d;
+  border: 1px solid rgba(175, 124, 76, 0.28);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+}
+
+.porta__marca {
+  margin: 0 0 0.6rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ambre);
+}
+
+.porta__titol {
+  margin: 0 0 0.9rem;
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--or);
+}
+
+.porta__text {
+  margin: 0 0 1.6rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ivori-mut);
+}
+
+.porta__formulari {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.porta__camp {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ivori);
+  text-align: center;
+  background-color: var(--negre);
+  border: 1px solid rgba(175, 124, 76, 0.35);
+  border-radius: 0;
+}
+
+.porta__camp::placeholder {
+  color: var(--ivori-mut);
+}
+
+.porta__camp:focus {
+  border-color: var(--or);
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+}
+
+.porta__boto {
+  width: 100%;
+  justify-content: center;
+}
+
+.porta__error {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--or-clar);
+}
