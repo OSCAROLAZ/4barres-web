@@ -969,42 +969,6 @@ a {
   max-width: 62ch;
 }
 
-/* Capítol pendent: marc daurat discontinu i la quarta barra puntejada */
-.serie-p__foto--pendent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  aspect-ratio: 16 / 9;
-  background-color: var(--negre);
-  border: 2px dashed rgba(217, 164, 91, 0.55);
-  cursor: default;
-}
-
-.serie-p__foto--pendent svg {
-  width: 32%;
-  height: auto;
-}
-
-.serie-p__foto--pendent rect {
-  fill: rgba(179, 38, 30, 0.35);
-}
-
-.serie-p__foto--pendent .serie-p__barra-pendent {
-  fill: transparent;
-  stroke: var(--or);
-  stroke-width: 3;
-  stroke-dasharray: 7 6;
-}
-
-.serie-p__foto--pendent p {
-  font-family: var(--serif);
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-  color: var(--ambre);
-}
-
 /* ---------- El repartiment: sessió promocional (retrats + foto de grup) ---------- */
 .serie-p__repartiment {
   /* A mòbil és l'últim element del grid (després dels capítols);
